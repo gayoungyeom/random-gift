@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- 상자 뒷면 -->
+  <path d="M100 45 L30 75 L30 160 L100 190 L170 160 L170 75 Z" 
+        fill="#D4A574" stroke="#A67C52" stroke-width="2.5"/>
+  
+  <!-- 상자 왼쪽 면 -->
+  <path d="M30 75 L30 160 L100 190 L100 105 Z" 
+        fill="#C9985E" stroke="#A67C52" stroke-width="2.5"/>
+  
+  <!-- 상자 오른쪽 면 -->
+  <path d="M100 105 L100 190 L170 160 L170 75 Z" 
+        fill="#E5B887" stroke="#A67C52" stroke-width="2.5"/>
+  
+  <!-- 상자 앞면 (윗부분) -->
+  <path d="M100 105 L30 75 L30 95 L100 125 Z" 
+        fill="#C9985E" stroke="none"/>
+  
+  <path d="M100 105 L170 75 L170 95 L100 125 Z" 
+        fill="#E5B887" stroke="none"/>
+  
+  <!-- 상자 세로선 -->
+  <line x1="100" y1="105" x2="100" y2="190" stroke="#A67C52" stroke-width="2.5"/>
+  
+  <!-- 열린 뚜껑 1: 왼쪽 뒤 모서리 -->
+  <path d="M30 75 L15 60 L85 30 L100 45 Z" 
+        fill="#D4A574" stroke="#A67C52" stroke-width="2.5"/>
+  
+  <!-- 열린 뚜껑 2: 오른쪽 뒤 모서리 -->
+  <path d="M170 75 L185 60 L115 30 L100 45 Z" 
+        fill="#E5B887" stroke="#A67C52" stroke-width="2.5"/>
+  
+  <!-- 열린 뚜껑 3: 왼쪽 앞 모서리 -->
+  <path d="M30 75 L15 90 L70 105 L100 105 Z" 
+        fill="#D4A574" stroke="#A67C52" stroke-width="2.5"/>
+  
+  <!-- 열린 뚜껑 4: 오른쪽 앞 모서리 -->
+  <path d="M170 75 L185 90 L130 105 L100 105 Z" 
+        fill="#E5B887" stroke="#A67C52" stroke-width="2.5"/>
+  
+  <!-- 물음표 -->
+  <g transform="translate(100, 110)">
+    <!-- 물음표 상단 곡선 -->
+    <path d="M-18 -20 Q-18 -38 0 -38 Q18 -38 18 -20 Q18 2 0 10 L0 20" 
+          fill="none" stroke="#2A2A2A" stroke-width="12" stroke-linecap="round"/>
+    
+    <!-- 물음표 점 -->
+    <circle cx="0" cy="34" r="7" fill="#2A2A2A"/>
+  </g>
+</svg>
