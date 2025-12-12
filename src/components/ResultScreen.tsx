@@ -1,8 +1,17 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import Loading from '@/components/Loading';
+import ErrorMessage from '@/components/ErrorMessage';
+import { useGetRecommendGift } from '@/hooks/useGetRecommendGift';
 import { Gift, UserAnswer } from '@/types';
 
 interface ResultScreenProps {
@@ -22,96 +31,20 @@ export default function ResultScreen({
   onGoHome,
   canRetry,
 }: ResultScreenProps) {
-  const [isLoading, setIsLoading] = useState(!result);
-  const [error, setError] = useState<string | null>(null);
+  const { gift, isLoading, error, retry } = useGetRecommendGift(
+    answers,
+    result
+  );
 
   useEffect(() => {
-    if (result) return;
-
-    let isCancelled = false;
-
-    const fetchRecommendation = async () => {
-      setIsLoading(true);
-      setError(null);
-
-      try {
-        const response = await fetch('/api/recommend', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ answers }),
-        });
-
-        if (isCancelled) return;
-
-        if (!response.ok) {
-          throw new Error('추천을 가져오는데 실패했습니다');
-        }
-
-        const data = await response.json();
-        if (!isCancelled) {
-          onResultReceived(data.gift);
-        }
-      } catch (err) {
-        if (!isCancelled) {
-          setError(err instanceof Error ? err.message : '오류가 발생했습니다');
-        }
-      } finally {
-        if (!isCancelled) {
-          setIsLoading(false);
-        }
-      }
-    };
-
-    fetchRecommendation();
-
-    return () => {
-      isCancelled = true;
-    };
-  }, [result, answers, onResultReceived]);
-
-  const handleRetryFetch = async () => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const response = await fetch('/api/recommend', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ answers }),
-      });
-
-      if (!response.ok) {
-        throw new Error('추천을 가져오는데 실패했습니다');
-      }
-
-      const data = await response.json();
-      onResultReceived(data.gift);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : '오류가 발생했습니다');
-    } finally {
-      setIsLoading(false);
+    if (gift && gift !== result) {
+      onResultReceived(gift);
     }
-  };
+  }, [gift, result, onResultReceived]);
 
-  if (isLoading) {
-    return (
-      <div className="flex flex-col items-center justify-center gap-4">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
-        <p className="text-muted-foreground">당신에게 딱 맞는 선물을 찾는 중...</p>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="flex flex-col items-center justify-center gap-4 text-center">
-        <p className="text-destructive">{error}</p>
-        <Button onClick={handleRetryFetch}>다시 시도</Button>
-      </div>
-    );
-  }
-
-  if (!result) return null;
+  if (isLoading) return <Loading text="당신에게 딱 맞는 선물을 찾는 중..." />;
+  if (error) return <ErrorMessage message={error} onRetry={retry} />;
+  if (!gift) return null;
 
   return (
     <div className="flex flex-col items-center justify-center gap-6 max-w-md w-full">
@@ -119,12 +52,12 @@ export default function ResultScreen({
 
       <Card className="w-full">
         <CardHeader className="text-center">
-          <CardTitle className="text-xl">{result.name}</CardTitle>
-          <CardDescription>{result.description}</CardDescription>
+          <CardTitle className="text-xl">{gift.name}</CardTitle>
+          <CardDescription>{gift.description}</CardDescription>
         </CardHeader>
         <CardContent className="text-center">
           <div className="flex flex-wrap gap-2 justify-center">
-            {result.tags.slice(0, 3).map((tag) => (
+            {gift.tags.slice(0, 3).map((tag) => (
               <span
                 key={tag}
                 className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm"
