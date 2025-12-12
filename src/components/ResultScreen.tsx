@@ -26,12 +26,50 @@ export default function ResultScreen({
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!result) {
-      fetchRecommendation();
-    }
-  }, [result]);
+    if (result) return;
 
-  const fetchRecommendation = async () => {
+    let isCancelled = false;
+
+    const fetchRecommendation = async () => {
+      setIsLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch('/api/recommend', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ answers }),
+        });
+
+        if (isCancelled) return;
+
+        if (!response.ok) {
+          throw new Error('추천을 가져오는데 실패했습니다');
+        }
+
+        const data = await response.json();
+        if (!isCancelled) {
+          onResultReceived(data.gift);
+        }
+      } catch (err) {
+        if (!isCancelled) {
+          setError(err instanceof Error ? err.message : '오류가 발생했습니다');
+        }
+      } finally {
+        if (!isCancelled) {
+          setIsLoading(false);
+        }
+      }
+    };
+
+    fetchRecommendation();
+
+    return () => {
+      isCancelled = true;
+    };
+  }, [result, answers, onResultReceived]);
+
+  const handleRetryFetch = async () => {
     setIsLoading(true);
     setError(null);
 
@@ -68,7 +106,7 @@ export default function ResultScreen({
     return (
       <div className="flex flex-col items-center justify-center gap-4 text-center">
         <p className="text-destructive">{error}</p>
-        <Button onClick={fetchRecommendation}>다시 시도</Button>
+        <Button onClick={handleRetryFetch}>다시 시도</Button>
       </div>
     );
   }
