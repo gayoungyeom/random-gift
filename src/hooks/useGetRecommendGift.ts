@@ -29,7 +29,8 @@ async function fetchRecommendGift(
 
 export function useGetRecommendGift(
   answers: UserAnswer[],
-  initialGift: Gift | null = null
+  initialGift: Gift | null = null,
+  onRetryCount: () => void
 ): UseGetRecommendGift {
   const [gift, setGift] = useState<Gift | null>(initialGift);
   const [isLoading, setIsLoading] = useState(!initialGift);
@@ -63,8 +64,11 @@ export function useGetRecommendGift(
   );
 
   const retry = useCallback(async () => {
-    await execute();
-  }, [execute]);
+    abortControllerRef.current?.abort();
+    abortControllerRef.current = new AbortController();
+    await execute(abortControllerRef.current.signal);
+    onRetryCount();
+  }, [execute, onRetryCount]);
 
   useEffect(() => {
     if (initialGift) return;
@@ -75,7 +79,8 @@ export function useGetRecommendGift(
     return () => {
       abortControllerRef.current?.abort();
     };
-  }, [initialGift, execute]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [initialGift]);
 
   return { gift, isLoading, error, retry };
 }

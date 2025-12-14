@@ -13,7 +13,7 @@ interface ResultScreenProps {
   answers: UserAnswer[];
   result: Gift | null;
   onResultReceived: (gift: Gift) => void;
-  onRetry: () => void;
+  onRetryCount: () => void;
   onGoHome: () => void;
   canRetry: boolean;
 }
@@ -22,7 +22,7 @@ export default function ResultScreen({
   answers,
   result,
   onResultReceived,
-  onRetry,
+  onRetryCount,
   onGoHome,
   canRetry,
 }: ResultScreenProps) {
@@ -30,7 +30,8 @@ export default function ResultScreen({
   const [isDownloading, setIsDownloading] = useState(false);
   const { gift, isLoading, error, retry } = useGetRecommendGift(
     answers,
-    result
+    result,
+    onRetryCount
   );
 
   useEffect(() => {
@@ -80,7 +81,7 @@ export default function ResultScreen({
           {isDownloading ? '다운로드 중...' : '이미지로 저장하기'}
         </Button>
         {canRetry && (
-          <Button variant="outline" onClick={onRetry} className="w-full">
+          <Button variant="outline" onClick={retry} className="w-full">
             마음에 안 들어요 (1회 가능)
           </Button>
         )}

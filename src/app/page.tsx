@@ -6,11 +6,13 @@ import QuestionScreen from '@/components/QuestionScreen';
 import ResultScreen from '@/components/ResultScreen';
 import { GameState, UserAnswer, Gift } from '@/types';
 
+const RETRY_LIMIT = 1;
+
 export default function Home() {
   const [gameState, setGameState] = useState<GameState>('home');
   const [answers, setAnswers] = useState<UserAnswer[]>([]);
   const [result, setResult] = useState<Gift | null>(null);
-  const [retryCount, setRetryCount] = useState(0);
+  const [retryCount, setRetryCount] = useState(RETRY_LIMIT);
 
   const handleStart = () => {
     setGameState('questions');
@@ -26,18 +28,15 @@ export default function Home() {
     setResult(gift);
   };
 
-  const handleRetry = () => {
-    if (retryCount < 1) {
-      setRetryCount(retryCount + 1);
-      setResult(null);
-    }
+  const handleRetryCount = () => {
+    setRetryCount((prev) => prev - 1);
   };
 
   const handleGoHome = () => {
     setGameState('home');
     setAnswers([]);
     setResult(null);
-    setRetryCount(0);
+    setRetryCount(RETRY_LIMIT);
   };
 
   return (
@@ -51,9 +50,9 @@ export default function Home() {
           answers={answers}
           result={result}
           onResultReceived={handleResultReceived}
-          onRetry={handleRetry}
+          onRetryCount={handleRetryCount}
           onGoHome={handleGoHome}
-          canRetry={retryCount < 1}
+          canRetry={retryCount > 0}
         />
       )}
     </main>
