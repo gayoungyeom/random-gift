@@ -105,7 +105,7 @@ const GiftCard = forwardRef<HTMLDivElement, GiftCardProps>(({ gift }, ref) => {
       style={{
         width: '320px',
         backgroundColor: theme.bg,
-        borderRadius: '16px',
+        borderRadius: '20px',
         padding: '16px',
         fontFamily: 'system-ui, -apple-system, sans-serif',
       }}
@@ -114,7 +114,7 @@ const GiftCard = forwardRef<HTMLDivElement, GiftCardProps>(({ gift }, ref) => {
       <div
         style={{
           backgroundColor: theme.header,
-          borderRadius: '12px 12px 0 0',
+          borderRadius: '16px 16px 0 0',
           padding: '16px',
           textAlign: 'center',
         }}
@@ -201,7 +201,7 @@ const GiftCard = forwardRef<HTMLDivElement, GiftCardProps>(({ gift }, ref) => {
       <div
         style={{
           backgroundColor: '#FFFFFF',
-          borderRadius: '0 0 12px 12px',
+          borderRadius: '0 0 16px 16px',
           padding: '12px 16px',
           borderTop: '2px dashed #E5E5E5',
         }}

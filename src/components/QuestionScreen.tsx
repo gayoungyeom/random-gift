@@ -17,7 +17,8 @@ export default function QuestionScreen({ onComplete }: QuestionScreenProps) {
   const progress = ((currentIndex + 1) / questions.length) * 100;
 
   const handleAnswer = (answer: 'yes' | 'no') => {
-    const tag = answer === 'yes' ? currentQuestion.yesTag : currentQuestion.noTag;
+    const tag =
+      answer === 'yes' ? currentQuestion.yesTag : currentQuestion.noTag;
     const newAnswer: UserAnswer = {
       questionId: currentQuestion.id,
       answer,
@@ -39,32 +40,36 @@ export default function QuestionScreen({ onComplete }: QuestionScreenProps) {
       <div className="w-full space-y-2">
         <div className="flex justify-between text-sm text-muted-foreground">
           <span>질문 {currentIndex + 1}</span>
-          <span>{currentIndex + 1} / {questions.length}</span>
+          <span>
+            {currentIndex + 1} / {questions.length}
+          </span>
         </div>
-        <div className="w-full bg-secondary rounded-full h-2">
+        <div className="w-full bg-secondary rounded-full h-2.5">
           <div
-            className="bg-primary h-2 rounded-full transition-all duration-300"
+            className="bg-primary h-2.5 rounded-full transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>
       </div>
 
-      <div className="py-8">
-        <h2 className="text-2xl font-semibold">{currentQuestion.text}</h2>
+      <div className="py-8 min-h-32 flex items-center justify-center">
+        <h2 className="text-2xl font-semibold break-keep">
+          {currentQuestion.text}
+        </h2>
       </div>
 
       <div className="flex gap-4 w-full">
         <Button
           variant="outline"
           size="lg"
-          className="flex-1 text-lg py-6"
+          className="flex-1 text-lg py-6 rounded-full"
           onClick={() => handleAnswer('no')}
         >
           아니요
         </Button>
         <Button
           size="lg"
-          className="flex-1 text-lg py-6"
+          className="flex-1 text-lg py-6 rounded-full"
           onClick={() => handleAnswer('yes')}
         >
           네

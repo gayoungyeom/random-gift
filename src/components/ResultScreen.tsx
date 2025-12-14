@@ -67,25 +67,34 @@ export default function ResultScreen({
   if (!gift) return null;
 
   return (
-    <div className="flex flex-col items-center justify-center gap-6">
+    <div className="flex flex-col items-center justify-center gap-6 py-3">
       <h2 className="text-2xl font-bold">당신을 위한 선물</h2>
 
       <GiftCard ref={giftCardRef} gift={gift} />
 
       <div className="flex flex-col gap-3 w-[320px]">
         <Button
+          variant="neutral"
           onClick={handleDownload}
           disabled={isDownloading}
-          className="w-full"
+          className="w-full py-6"
         >
           {isDownloading ? '다운로드 중...' : '이미지로 저장하기'}
         </Button>
         {canRetry && (
-          <Button variant="outline" onClick={retry} className="w-full">
+          <Button
+            variant="neutral-outline"
+            onClick={retry}
+            className="w-full py-6"
+          >
             마음에 안 들어요 (1회 가능)
           </Button>
         )}
-        <Button variant="outline" onClick={onGoHome} className="w-full">
+        <Button
+          variant="neutral-outline"
+          onClick={onGoHome}
+          className="w-full py-6"
+        >
           처음으로
         </Button>
       </div>

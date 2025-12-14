@@ -40,7 +40,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center p-4">
+    <main className="min-h-svh flex items-center justify-center p-4 overflow-auto">
       {gameState === 'home' && <HomeScreen onStart={handleStart} />}
       {gameState === 'questions' && (
         <QuestionScreen onComplete={handleQuestionsComplete} />
