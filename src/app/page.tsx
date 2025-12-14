@@ -43,7 +43,10 @@ export default function Home() {
     <main className="min-h-svh flex items-center justify-center p-4 overflow-auto">
       {gameState === 'home' && <HomeScreen onStart={handleStart} />}
       {gameState === 'questions' && (
-        <QuestionScreen onComplete={handleQuestionsComplete} />
+        <QuestionScreen
+          onComplete={handleQuestionsComplete}
+          onGoHome={handleGoHome}
+        />
       )}
       {gameState === 'result' && (
         <ResultScreen

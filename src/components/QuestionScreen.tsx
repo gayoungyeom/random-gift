@@ -7,9 +7,13 @@ import { UserAnswer } from '@/types';
 
 interface QuestionScreenProps {
   onComplete: (answers: UserAnswer[]) => void;
+  onGoHome: () => void;
 }
 
-export default function QuestionScreen({ onComplete }: QuestionScreenProps) {
+export default function QuestionScreen({
+  onComplete,
+  onGoHome,
+}: QuestionScreenProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [answers, setAnswers] = useState<UserAnswer[]>([]);
 
@@ -35,11 +39,26 @@ export default function QuestionScreen({ onComplete }: QuestionScreenProps) {
     }
   };
 
+  const handleBack = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+      setAnswers(answers.slice(0, -1));
+    } else {
+      onGoHome();
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center text-center gap-8 max-w-md w-full">
       <div className="w-full space-y-2">
-        <div className="flex justify-between text-sm text-muted-foreground">
-          <span>질문 {currentIndex + 1}</span>
+        <div className="flex justify-between items-center text-sm text-muted-foreground">
+          <button
+            onClick={handleBack}
+            className="flex items-center gap-1 hover:text-foreground transition-colors"
+          >
+            <span>←</span>
+            <span>{currentIndex === 0 ? '처음으로' : '이전'}</span>
+          </button>
           <span>
             {currentIndex + 1} / {questions.length}
           </span>

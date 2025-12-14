@@ -77,7 +77,7 @@ export default function ResultScreen({
           variant="neutral"
           onClick={handleDownload}
           disabled={isDownloading}
-          className="w-full py-6"
+          className="w-full py-6 rounded-full"
         >
           {isDownloading ? '다운로드 중...' : '이미지로 저장하기'}
         </Button>
@@ -85,7 +85,7 @@ export default function ResultScreen({
           <Button
             variant="neutral-outline"
             onClick={retry}
-            className="w-full py-6"
+            className="w-full py-6 rounded-full"
           >
             마음에 안 들어요 (1회 가능)
           </Button>
@@ -93,7 +93,7 @@ export default function ResultScreen({
         <Button
           variant="neutral-outline"
           onClick={onGoHome}
-          className="w-full py-6"
+          className="w-full py-6 rounded-full"
         >
           처음으로
         </Button>
