@@ -39,9 +39,7 @@ export default function HomeScreen({ onStart }: HomeScreenProps) {
         시작하기
       </Button>
 
-      <p className="text-sm text-muted-foreground/70">
-        약 1분 정도 소요됩니다
-      </p>
+      <p className="text-sm text-muted-foreground/70">약 1분 정도 소요됩니다</p>
     </div>
   );
 }

@@ -3,44 +3,50 @@ import { Question } from '@/types';
 export const questions: Question[] = [
   {
     id: '1',
-    text: '퇴근 후 집에서 넷플릭스 보는 게 최고다',
+    text: '약속 없는 주말엔 집 밖으로 나가기 싫다',
     yesTag: '집순이',
     noTag: '외출',
   },
   {
     id: '2',
-    text: '새벽에 갑자기 배고프면 참지 못한다',
+    text: '밤 10시 넘어서 뭔가 먹는 게 일상이다',
     yesTag: '야식',
     noTag: '절제',
   },
   {
     id: '3',
-    text: '스트레스 받으면 일단 뭔가 산다',
+    text: '월급날엔 뭔가 하나 사야 직성이 풀린다',
     yesTag: '쇼핑',
     noTag: '저장',
   },
   {
     id: '4',
-    text: '카페에서 분위기 내며 시간 보내는 걸 좋아한다',
+    text: '좋아하는 카페가 3개 이상 있다',
     yesTag: '카페',
     noTag: '효율',
   },
   {
     id: '5',
-    text: '요즘 자기 관리에 관심이 많다',
+    text: '최근에 운동이나 스킨케어를 시작했다',
     yesTag: '셀프케어',
     noTag: '귀찮음',
   },
   {
     id: '6',
-    text: '혼자만의 시간이 꼭 필요하다',
+    text: '사람 많은 곳에 가면 에너지가 빠진다',
     yesTag: '혼자',
     noTag: '사람좋아',
   },
   {
     id: '7',
-    text: '계획 없이 즉흥적으로 움직이는 편이다',
+    text: '여행은 계획보다 즉흥이 재밌다',
     yesTag: '즉흥',
     noTag: '계획',
+  },
+  {
+    id: '8',
+    text: '맛집은 줄 서서라도 가야 한다',
+    yesTag: '외출',
+    noTag: '효율',
   },
 ];

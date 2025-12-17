@@ -10,17 +10,29 @@ const brandThemes: Record<
   string,
   { bg: string; header: string; accent: string; emoji: string }
 > = {
-  교촌치킨: {
+  스타벅스: {
+    bg: '#E8F5E9',
+    header: '#00704A',
+    accent: '#1E3932',
+    emoji: '☕',
+  },
+  투썸플레이스: {
+    bg: '#FCE4EC',
+    header: '#CE0235',
+    accent: '#C2185B',
+    emoji: '🍰',
+  },
+  베스킨라빈스: {
+    bg: '#FCE4EC',
+    header: '#E91E63',
+    accent: '#F06292',
+    emoji: '🍨',
+  },
+  BBQ: {
     bg: '#FFF3E0',
     header: '#D84315',
     accent: '#FF5722',
     emoji: '🍗',
-  },
-  스타벅스: {
-    bg: '#E8F5E9',
-    header: '#1E3932',
-    accent: '#00704A',
-    emoji: '☕',
   },
   배달의민족: {
     bg: '#E3F2FD',
@@ -28,47 +40,47 @@ const brandThemes: Record<
     accent: '#2AC1BC',
     emoji: '🛵',
   },
-  다이소: {
-    bg: '#FFEBEE',
-    header: '#E53935',
-    accent: '#F44336',
-    emoji: '🛒',
-  },
-  CU: {
-    bg: '#F3E5F5',
-    header: '#6A1B9A',
-    accent: '#9C27B0',
-    emoji: '🏪',
-  },
-  버거킹: {
-    bg: '#FFF8E1',
-    header: '#D84315',
-    accent: '#FF6F00',
-    emoji: '🍔',
-  },
-  투썸플레이스: {
-    bg: '#FCE4EC',
-    header: '#880E4F',
-    accent: '#C2185B',
-    emoji: '🍰',
-  },
   올리브영: {
     bg: '#E8F5E9',
     header: '#2E7D32',
     accent: '#4CAF50',
     emoji: '💄',
   },
-  CGV: {
-    bg: '#FFEBEE',
-    header: '#B71C1C',
-    accent: '#E53935',
-    emoji: '🎬',
+  마사지기: {
+    bg: '#E3F2FD',
+    header: '#1565C0',
+    accent: '#42A5F5',
+    emoji: '💆',
   },
-  네이버페이: {
+  돼지고기: {
+    bg: '#FFEBEE',
+    header: '#C62828',
+    accent: '#EF5350',
+    emoji: '🥩',
+  },
+  종근당: {
+    bg: '#E3F2FD',
+    header: '#003690',
+    accent: '#1976D2',
+    emoji: '💊',
+  },
+  와인: {
     bg: '#E8F5E9',
-    header: '#03C75A',
-    accent: '#03C75A',
-    emoji: '💳',
+    header: '#558B2F',
+    accent: '#8BC34A',
+    emoji: '🍾',
+  },
+  감귤: {
+    bg: '#FFF8E1',
+    header: '#F57C00',
+    accent: '#FFB74D',
+    emoji: '🍊',
+  },
+  GS25: {
+    bg: '#E3F2FD',
+    header: '#1976D2',
+    accent: '#42A5F5',
+    emoji: '🏪',
   },
 };
 
