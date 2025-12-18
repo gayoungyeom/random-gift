@@ -56,7 +56,7 @@ const brandThemes: Record<
     bg: '#FFEBEE',
     header: '#C62828',
     accent: '#EF5350',
-    emoji: '🥩',
+    emoji: '🍖',
   },
   종근당: {
     bg: '#E3F2FD',

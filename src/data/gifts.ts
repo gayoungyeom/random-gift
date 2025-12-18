@@ -57,8 +57,8 @@ export const gifts: Gift[] = [
   },
   {
     id: '10',
-    name: '화이트 와인',
-    description: '상쾌한 풍미의 뉴질랜드 와인 한 잔',
+    name: '뉴질랜드산 화이트 와인',
+    description: '상쾌한 풍미의 깔끔한 와인 한 잔',
     tags: ['외출', '절제', '계획', '사람좋아'],
   },
   {
